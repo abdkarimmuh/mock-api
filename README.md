@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mock API
 
-## Getting Started
+A fake REST API for testing and prototyping, built with Next.js Route Handlers. Six resources, full CRUD, one-level nested routes, and query filtering — backed by real in-memory data instead of faked writes.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for the landing page, or [http://localhost:3000/guide](http://localhost:3000/guide) for full API documentation and examples.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command                             | Description                   |
+| ----------------------------------- | ----------------------------- |
+| `npm run dev`                       | Start the dev server          |
+| `npm run build` / `npm run start`   | Production build / serve      |
+| `npm run lint` / `npm run lint:fix` | ESLint                        |
+| `npm run typecheck`                 | `tsc --noEmit`                |
+| `npm run format`                    | Prettier over `**/*.{ts,tsx}` |
 
-## Learn More
+## Resources
 
-To learn more about Next.js, take a look at the following resources:
+| Resource | Base path       | Items |
+| -------- | --------------- | ----- |
+| Posts    | `/api/posts`    | 100   |
+| Comments | `/api/comments` | 500   |
+| Albums   | `/api/albums`   | 100   |
+| Photos   | `/api/photos`   | 5000  |
+| Todos    | `/api/todos`    | 200   |
+| Users    | `/api/users`    | 10    |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Each resource supports `GET` (list, with query filtering), `GET /:id`, `POST`, `PUT /:id`, `PATCH /:id`, and `DELETE /:id`. Related resources also expose one-level nested routes, e.g. `/api/posts/1/comments` is equivalent to `/api/comments?postId=1`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [`/guide`](http://localhost:3000/guide) for the full route reference and `fetch()` examples.
 
-## Deploy on Vercel
+## Data & persistence
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Data starts from a deterministic seed and lives in memory on the server. Writes are real: `POST`, `PUT`, `PATCH`, and `DELETE` actually mutate the data for as long as the server process is running. Restarting the dev server resets everything back to the seed data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment variables
+
+Copy `.env.example` to `.env` and adjust as needed:
+
+| Variable      | Used for                                        |
+| ------------- | ----------------------------------------------- |
+| `BASE_URL`    | The base URL shown in the guide page's examples |
+| `PROFILE_URL` | Link target for the author's name in the footer |
+
+## Tech stack
+
+Next.js 16 (App Router), React 19, Tailwind CSS v4, TypeScript, [lucide-react](https://lucide.dev/) for icons.
