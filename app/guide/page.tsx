@@ -43,7 +43,7 @@ const methods: {
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <pre className="overflow-x-auto rounded-xl bg-zinc-950 p-4 font-mono text-xs leading-6 text-zinc-100">
+    <pre className="overflow-x-auto rounded-xl border bg-zinc-800 p-4 font-mono text-xs leading-6 text-white dark:border dark:border-white/[.2] dark:bg-white/[.05] dark:text-white">
       {children}
     </pre>
   );

@@ -15,7 +15,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="flex h-9 w-9 items-center justify-center rounded-full  text-zinc-600 transition-colors hover:text-zinc-950 dark:border-white/[.145] dark:text-zinc-400 dark:hover:text-zinc-50"
+      className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 transition-colors hover:bg-black/[.05] hover:text-zinc-950 dark:border-white/[.145] dark:text-zinc-400 dark:hover:bg-white/[.06] dark:hover:text-zinc-50"
     >
       <Moon className="h-4.5 w-4.5 block dark:hidden" />
       <Sun className="h-4.5 w-4.5 hidden dark:block" />
