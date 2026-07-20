@@ -26,7 +26,7 @@ export default function Home() {
         </div>
         <Link
           href="/guide"
-          className="flex h-12 items-center justify-center rounded-full bg-foreground px-6 font-medium text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
+          className="bg-foreground text-background flex h-12 items-center justify-center rounded-full px-6 font-medium transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
         >
           Read the guide
         </Link>

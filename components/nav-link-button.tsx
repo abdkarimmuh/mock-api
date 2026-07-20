@@ -16,7 +16,7 @@ export function NavLinkButton({
     <button
       type="button"
       onClick={() => router.push(href)}
-      className="flex h-9 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
+      className="bg-foreground text-background flex h-9 items-center justify-center rounded-full px-4 text-sm font-medium transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
     >
       {children}
     </button>
