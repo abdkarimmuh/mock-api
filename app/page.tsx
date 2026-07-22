@@ -24,10 +24,10 @@ export default function Home() {
           priority
         />
         <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-foreground text-4xl font-semibold tracking-tight">
             Mock API
           </h1>
-          <p className="text-lg leading-8 text-muted-foreground">
+          <p className="text-muted-foreground text-lg leading-8">
             A fake REST API for testing and prototyping — full CRUD, nested
             routes, and query filtering, backed by real in-memory data.
           </p>
@@ -40,7 +40,7 @@ export default function Home() {
             <a key={resource.name} href={`/api/${resource.name}`}>
               <Card
                 size="sm"
-                className="h-full transition-colors hover:ring-foreground/20"
+                className="hover:ring-foreground/20 h-full transition-colors"
               >
                 <CardHeader>
                   <CardTitle>{resource.label}</CardTitle>
@@ -48,7 +48,7 @@ export default function Home() {
                     /api/{resource.name}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="text-xs text-muted-foreground">
+                <CardContent className="text-muted-foreground text-xs">
                   {resource.count} items
                 </CardContent>
               </Card>
