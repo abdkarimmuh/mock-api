@@ -4,8 +4,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 
-import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { cn } from "@/lib/utils";
 
 const themeInitScript = `
   (function () {
@@ -18,12 +19,12 @@ const themeInitScript = `
 `;
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
   subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"]
 });
 
@@ -40,14 +41,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        "h-full font-sans antialiased",
+        geistSans.variable,
+        geistMono.variable
+      )}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>
-        <Navbar />
+        <Header />
         <div className="flex flex-1 flex-col">{children}</div>
         <Footer />
       </body>
