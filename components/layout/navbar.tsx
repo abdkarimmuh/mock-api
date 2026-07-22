@@ -3,19 +3,17 @@
 import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { useIsClient } from "@/hooks/use-is-client";
+import { cn } from "@/lib/utils";
 
-export function Header() {
-  const router = useRouter();
-
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    const next = !root.classList.contains("dark");
-    root.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-  };
+export function Navbar() {
+  const pathname = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useIsClient();
 
   return (
     <header className="bg-background/80 sticky top-0 z-10 border-b backdrop-blur">
@@ -33,18 +31,25 @@ export function Header() {
           </span>
         </Link>
         <nav className="flex items-center gap-2 text-sm font-medium">
-          <Button type="button" onClick={() => router.push("/guide")}>
-            <div className="px-1">Guide</div>
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
+          <Link
+            href="/guide"
+            className={cn(
+              "rounded-md px-3 py-1.5 text-sm transition-colors",
+              pathname === "/guide" ? "bg-muted" : "hover:text-muted-foreground"
+            )}
           >
-            <Moon className="block dark:hidden" />
-            <Sun className="hidden dark:block" />
+            Guide
+          </Link>
+
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Toggle theme"
+            onClick={() =>
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }
+          >
+            {mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
           </Button>
         </nav>
       </div>
