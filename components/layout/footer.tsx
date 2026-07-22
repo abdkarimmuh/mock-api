@@ -2,13 +2,15 @@ export function Footer() {
   const profileUrl = process.env.PROFILE_URL;
 
   return (
-    <footer className="text-muted-foreground border-t py-6 text-center text-sm">
-      © {new Date().getFullYear()} created by{" "}
+    <footer className="mt-auto border-t px-6 py-4 text-center text-xs">
+      <span className="text-muted-foreground">
+        © {new Date().getFullYear()} created by{" "}
+      </span>
       <a
         href={profileUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-foreground/80 hover:text-foreground font-bold transition-colors"
+        className="hover:text-foreground font-bold underline-offset-4 hover:underline"
       >
         Muhammad Abdul Karim
       </a>
