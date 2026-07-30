@@ -41,7 +41,9 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
           <Navbar />
-          <div className="flex flex-1 flex-col">{children}</div>
+          <div className="flex flex-1 flex-col bg-zinc-100 dark:bg-zinc-900">
+            {children}
+          </div>
           <Footer />
         </ThemeProvider>
       </body>
